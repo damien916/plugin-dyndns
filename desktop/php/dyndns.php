@@ -26,20 +26,18 @@ foreach ($eqLogics as $eqLogic) {
     <legend>{{Mes dyndns}}
     </legend>
     <div class="eqLogicThumbnailContainer">
-      <div class="cursor eqLogicAction" data-action="add" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-       <center>
+      <div class="cursor eqLogicAction" data-action="add" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
         <i class="fa fa-plus-circle" style="font-size : 7em;color:#94ca02;"></i>
-    </center>
-    <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
+    <br>
+    <span style="font-size : 1.1em;position:relative; top : 23px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">Ajouter</span>
 </div>
 <?php
 foreach ($eqLogics as $eqLogic) {
 	$opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
-	echo "<center>";
+	echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="text-align: center; background-color : #ffffff; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 	echo '<img src="plugins/dyndns/doc/images/dyndns_icon.png" height="105" width="95" />';
-	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
+	echo "<br>";
+	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $eqLogic->getHumanName(true, true) . '</span>';
 	echo '</div>';
 }
 ?>
@@ -90,34 +88,41 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
              <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
          </div>
      </div>
-     <div class="form-group">
+		 <div class="form-group">
         <label class="col-sm-3 control-label">{{Service}}</label>
         <div class="col-sm-3">
             <select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="type">
                 <option value="nonde">{{Aucun}}</option>
                 <option value="dyndnsorg">www.dyndns.org</option>
                 <option value="noipcom">www.noip.com</option>
-                <option value="ovhcom">www.ovh.com</option>
+								<option value="ovhcom">www.ovh.com</option>
+                <option value="duckdns">www.duckdns.org</option>
             </select>
         </div>
     </div>
-    <div class="serviceType dyndnsorg noipcom ovhcom">
+    <div class="serviceType dyndnsorg noipcom ovhcom duckdns">
         <div class="form-group">
             <label class="col-sm-3 control-label">{{Hostname}}</label>
             <div class="col-sm-3">
                 <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="hostname" />
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group serviceType dyndnsorg noipcom ovhcom">
             <label class="col-sm-3 control-label">{{Nom d'utilisateur}}</label>
             <div class="col-sm-3">
                 <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="username" />
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group serviceType dyndnsorg noipcom ovhcom">
             <label class="col-sm-3 control-label">{{Mot de passe}}</label>
             <div class="col-sm-3">
                 <input type="password" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="password" />
+            </div>
+        </div>
+				<div class="form-group serviceType duckdns">
+            <label class="col-sm-3 control-label">{{Token}}</label>
+            <div class="col-sm-3">
+                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="token" />
             </div>
         </div>
     </div>
